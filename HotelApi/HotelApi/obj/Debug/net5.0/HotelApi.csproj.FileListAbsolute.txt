@@ -163,3 +163,8 @@ C:\Users\joelc\Documents\projects\codefellows\401\Labs\Lab11\HotelApi\HotelApi\o
 C:\Users\joelc\Documents\projects\codefellows\401\Labs\Lab11\HotelApi\HotelApi\obj\Debug\net5.0\Razor\Views\Amenities\Details.cshtml.g.cs
 C:\Users\joelc\Documents\projects\codefellows\401\Labs\Lab11\HotelApi\HotelApi\obj\Debug\net5.0\Razor\Views\Amenities\Edit.cshtml.g.cs
 C:\Users\joelc\Documents\projects\codefellows\401\Labs\Lab11\HotelApi\HotelApi\obj\Debug\net5.0\Razor\Views\Amenities\Index.cshtml.g.cs
+C:\Users\joelc\Documents\projects\codefellows\401\Labs\Lab11\HotelApi\HotelApi\obj\Debug\net5.0\Razor\Views\RoomAmenities\Create.cshtml.g.cs
+C:\Users\joelc\Documents\projects\codefellows\401\Labs\Lab11\HotelApi\HotelApi\obj\Debug\net5.0\Razor\Views\RoomAmenities\Delete.cshtml.g.cs
+C:\Users\joelc\Documents\projects\codefellows\401\Labs\Lab11\HotelApi\HotelApi\obj\Debug\net5.0\Razor\Views\RoomAmenities\Details.cshtml.g.cs
+C:\Users\joelc\Documents\projects\codefellows\401\Labs\Lab11\HotelApi\HotelApi\obj\Debug\net5.0\Razor\Views\RoomAmenities\Edit.cshtml.g.cs
+C:\Users\joelc\Documents\projects\codefellows\401\Labs\Lab11\HotelApi\HotelApi\obj\Debug\net5.0\Razor\Views\RoomAmenities\Index.cshtml.g.cs

@@ -10,13 +10,28 @@ namespace HotelApi.Data
     {
         public DbSet<Hotel> Hotels { get; set; }
         
-        public DbSet<HotelApi.Models.Room> Room { get; set; }
-        public DbSet<HotelApi.Models.HotelRoom> HotelRoom { get; set; }
-        public DbSet<HotelApi.Models.Amenities> Amenities { get; set; }
-        public DbSet<HotelApi.Models.RoomAmenities> RoomAmenities { get; set; }
+        public DbSet<Room> Room { get; set; }
+        public DbSet<HotelRoom> HotelRoom { get; set; }
+        public DbSet<Amenities> Amenities { get; set; }
+        public DbSet<RoomAmenities> RoomAmenities { get; set; }
         public HotelDbContext(DbContextOptions options) : base(options)
         {
         }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<Hotel>().HasData(new Hotel
+            {
+                Id = 1,
+                City = "seattle",
+                Country = "USA",
+                Name = "Motel 6",
+                Phone = "555-123-5678",
+                State = "Washington",
+                StreetAddress= "123 Motel st"
 
+
+            });
+        }
     }
 }

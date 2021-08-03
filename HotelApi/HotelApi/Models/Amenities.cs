@@ -8,8 +8,8 @@ namespace HotelApi.Models
 {
     public class Amenities
     {
+        public int Id { get; set; }
 
-        
         [Required]
 
         public string Name { get; set; }

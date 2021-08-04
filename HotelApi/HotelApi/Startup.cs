@@ -1,4 +1,6 @@
 using HotelApi.Data;
+using HotelApi.Models.Interfaces;
+using HotelApi.Models.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -30,7 +32,13 @@ namespace HotelApi
                 // Our DATABASE_URL from js days
                 string connectionString = Configuration.GetConnectionString("DefaultConnection");
                 options.UseSqlServer(connectionString);
+
             });
+            //Dependency Injection Goes here
+            services.AddTransient<IHotel, HotelServices>();
+            services.AddTransient<IAmenities, AmenitiesServices>();
+            services.AddTransient<IRooms, RoomServices>();
+            services.AddControllers();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -45,6 +53,7 @@ namespace HotelApi
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapControllers();
                 endpoints.MapGet("/", async context =>
                 {
                     await context.Response.WriteAsync("Hello World!");

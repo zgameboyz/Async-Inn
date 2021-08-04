@@ -2,15 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using HotelApi.Data;
 using HotelApi.Models;
 
 namespace HotelApi.Controllers
 {
-    public class AmenitiesController : Controller
+    [Route("api/[controller]")]
+    [ApiController]
+    public class AmenitiesController : ControllerBase
     {
         private readonly HotelDbContext _context;
 
@@ -19,130 +21,83 @@ namespace HotelApi.Controllers
             _context = context;
         }
 
-        // GET: Amenities
-        public async Task<IActionResult> Index()
+        // GET: api/Amenities
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<Amenities>>> GetAmenities()
         {
-            return View(await _context.Amenities.ToListAsync());
+            return await _context.Amenities.ToListAsync();
         }
 
-        // GET: Amenities/Details/5
-        public async Task<IActionResult> Details(int? id)
+        // GET: api/Amenities/5
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Amenities>> GetAmenities(int id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var amenities = await _context.Amenities
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (amenities == null)
-            {
-                return NotFound();
-            }
-
-            return View(amenities);
-        }
-
-        // GET: Amenities/Create
-        public IActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Amenities/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name")] Amenities amenities)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Add(amenities);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(amenities);
-        }
-
-        // GET: Amenities/Edit/5
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
             var amenities = await _context.Amenities.FindAsync(id);
+
             if (amenities == null)
             {
                 return NotFound();
             }
-            return View(amenities);
+
+            return amenities;
         }
 
-        // POST: Amenities/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name")] Amenities amenities)
+        // PUT: api/Amenities/5
+        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutAmenities(int id, Amenities amenities)
         {
             if (id != amenities.Id)
             {
-                return NotFound();
+                return BadRequest();
             }
 
-            if (ModelState.IsValid)
+            _context.Entry(amenities).State = EntityState.Modified;
+
+            try
             {
-                try
-                {
-                    _context.Update(amenities);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!AmenitiesExists(amenities.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
+                await _context.SaveChangesAsync();
             }
-            return View(amenities);
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!AmenitiesExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return NoContent();
         }
 
-        // GET: Amenities/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        // POST: api/Amenities
+        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [HttpPost]
+        public async Task<ActionResult<Amenities>> PostAmenities(Amenities amenities)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            _context.Amenities.Add(amenities);
+            await _context.SaveChangesAsync();
 
-            var amenities = await _context.Amenities
-                .FirstOrDefaultAsync(m => m.Id == id);
+            return CreatedAtAction("GetAmenities", new { id = amenities.Id }, amenities);
+        }
+
+        // DELETE: api/Amenities/5
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteAmenities(int id)
+        {
+            var amenities = await _context.Amenities.FindAsync(id);
             if (amenities == null)
             {
                 return NotFound();
             }
 
-            return View(amenities);
-        }
-
-        // POST: Amenities/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var amenities = await _context.Amenities.FindAsync(id);
             _context.Amenities.Remove(amenities);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+
+            return NoContent();
         }
 
         private bool AmenitiesExists(int id)

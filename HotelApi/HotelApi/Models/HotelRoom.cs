@@ -8,7 +8,7 @@ namespace HotelApi.Models
 {
     public class HotelRoom
     {
-
+        public Room Room { get; set; }
         public int Id { get; set; }
 
         [Required]

@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using HotelApi.Data;
 using HotelApi.Models;
 using HotelApi.Models.Interfaces;
+using HotelApi.Models.DTO;
 
 namespace HotelApi.Controllers
 {
@@ -24,6 +25,9 @@ namespace HotelApi.Controllers
             _context = context;
             _hotel = hotel;
         }
+        //Routes
+         [HttpPost("Register")]
+         
 
         // GET: api/Hotels
         [HttpGet]

@@ -32,20 +32,20 @@ namespace HotelApi.Models.Services
 
         public async Task<List<Hotel>> GetHotels()
         {
-            // var students = await _context.Students.ToListAsync();
-            // return students;
+            var hotel = await _context.Hotels.ToListAsync();
+             return hotel;
 
-            return await _context.Hotels
-              .Include(s => s)
-              .ThenInclude(e => e.Country)
-              .ToListAsync();
+            //return await _context.Hotels
+            //  .Include(s => s.)
+            //  .ThenInclude(e => e.Course)
+            //  .ToListAsync();
         }
 
         public async Task<Hotel> GetHotel(int id)
         {
 
-            // Student student = await _context.Students.FindAsync(id);
-            // return student;
+            Hotel hotel = await _context.Hotels.FindAsync(id);
+            return hotel;
 
             // Student student = await _context.Students.FindAsync(id);
             // var enrollments = await _context.Enrollments.Where(x => x.StudentId == id)
@@ -57,10 +57,10 @@ namespace HotelApi.Models.Services
 
             // Now with a mondo linq query
 
-            return await _context.Hotels
-                                 .Include(s => s.Name)
-                                 
-                                 .FirstOrDefaultAsync(s => s.Id == id);
+            //return await _context.Hotels
+            //                     .Include(s => s.Name)
+            //                     .ThenInclude(e => e.)
+            //                     .FirstOrDefaultAsync(s => s.Id == id);
 
 
         }

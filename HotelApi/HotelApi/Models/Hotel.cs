@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HotelApi.Models
 {
-    public class Hotel
+    public class Hotel 
     {
        public int Id { get; set; }
         

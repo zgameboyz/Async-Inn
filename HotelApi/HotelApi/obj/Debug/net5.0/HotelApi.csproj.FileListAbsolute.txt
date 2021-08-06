@@ -181,3 +181,4 @@ C:\Users\joelc\Documents\projects\codefellows\401\Labs\Lab11\HotelApi\HotelApi\b
 C:\Users\joelc\Documents\projects\codefellows\401\Labs\Lab11\HotelApi\HotelApi\bin\Debug\net5.0\Microsoft.Extensions.Identity.Core.dll
 C:\Users\joelc\Documents\projects\codefellows\401\Labs\Lab11\HotelApi\HotelApi\bin\Debug\net5.0\Microsoft.Extensions.Identity.Stores.dll
 C:\Users\joelc\Documents\projects\codefellows\401\Labs\Lab11\HotelApi\HotelApi\bin\Debug\net5.0\Newtonsoft.Json.Bson.dll
+C:\Users\joelc\Documents\projects\codefellows\401\Labs\Lab11\HotelApi\HotelApi\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll

@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace HotelApi.Models.Services
@@ -81,5 +82,16 @@ namespace HotelApi.Models.Services
         {
             throw new NotImplementedException();
         }
+
+        public async Task<UserDto> GetUserAsync(ClaimsPrincipal principal)
+        {
+            var user = await userManager.GetUserAsync(principal);
+            return new UserDto
+            {
+                Id = user.Id,
+                Username = user.UserName
+            };
+        }
     }
+
 }
